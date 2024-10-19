@@ -1,0 +1,32 @@
+<input type="text" id="searchInput" placeholder="Enter comma-separated song names">
+<button onclick="searchImages()">Search for Images</button>
+
+<script>
+  async function searchImages() {
+    const searchQueries = document.getElementById("searchInput").value.split(",");
+    const apiKey = "AIzaSyDNsKtVWAcW-QlMq23ON1mSF3GKcU6Vovs"; // Replace with your API key
+    const cx = "452b96a2fd6ef411f"; // Replace with your CX ID
+
+    for (const query of searchQueries) {
+      const url = `https://customsearch.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(query)}&searchType=image`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        const imageResults = data.items;
+        // Take only the first image
+        const firstImage = imageResults[0];
+        if (firstImage) {
+          const img = document.createElement("img");
+          img.src = firstImage.link; // Assuming "link" contains the image URL
+          document.getElementById("content").appendChild(img);
+        }
+      } catch (error) {
+        console.error("Error fetching images:", error.message);
+      }
+    }
+  }
+</script>
+    <!-- API_KEY = AIzaSyDNsKtVWAcW-QlMq23ON1mSF3GKcU6Vovs-->
+    <!--CX = 452b96a2fd6ef411f-->
