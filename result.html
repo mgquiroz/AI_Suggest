@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Music Recommendations</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Recommended Songs for You</h1>
+        <div class="result-container">
+            <div class="result-title">Here are some songs you might like:</div>
+            <ul class="recommendations-list" id="recommendations-list">
+                <!-- The song recommendations will be dynamically inserted here -->
+            </ul>
+        </div>
+        <button onclick="goBack()">Back to Quiz</button>
+    </div>
+
+    <script>
+        // Extract recommendations from query string
+        document.addEventListener('DOMContentLoaded', function() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const recommendations = JSON.parse(decodeURIComponent(urlParams.get('recommendations')));
+
+            const recommendationsList = document.getElementById('recommendations-list');
+            
+            recommendations.forEach(song => {
+                const li = document.createElement('li');
+                li.textContent = song;
+                recommendationsList.appendChild(li);
+            });
+        });
+
+        // Navigate back to the quiz page
+        function goBack() {
+            window.location.href = 'index.html';  // Redirect back to the quiz
+        }
+    </script>
+</body>
+</html>

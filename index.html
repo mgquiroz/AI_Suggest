@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Personality Music Quiz</title>
+</head>
+<body>
+    <div class="container">
+        <h1>16 Personalities Quiz</h1>
+        <form id="quiz-form">
+            <!-- Extraversion vs. Introversion Questions -->
+            <h2>Extraversion vs. Introversion</h2>
+            <label>
+                1. You enjoy socializing with large groups of people.
+                <select name="e1" required>
+                    <option value="">Select</option>
+                    <option value="1">Strongly Agree</option>
+                    <option value="2">Agree</option>
+                    <option value="3">Neutral</option>
+                    <option value="4">Disagree</option>
+                    <option value="5">Strongly Disagree</option>
+                </select>
+            </label>
+            <label>
+                2. You often start conversations with strangers.
+                <select name="e2" required>
+                    <option value="">Select</option>
+                    <option value="1">Strongly Agree</option>
+                    <option value="2">Agree</option>
+                    <option value="3">Neutral</option>
+                    <option value="4">Disagree</option>
+                    <option value="5">Strongly Disagree</option>
+                </select>
+            </label>
+
+            <!-- Sensing vs. Intuition Questions -->
+            <h2>Sensing vs. Intuition</h2>
+            <label>
+                1. You prefer concrete facts over abstract theories.
+                <select name="s1" required>
+                    <option value="">Select</option>
+                    <option value="1">Strongly Agree</option>
+                    <option value="2">Agree</option>
+                    <option value="3">Neutral</option>
+                    <option value="4">Disagree</option>
+                    <option value="5">Strongly Disagree</option>
+                </select>
+            </label>
+            <label>
+                2. You are more focused on the present than future possibilities.
+                <select name="s2" required>
+                    <option value="">Select</option>
+                    <option value="1">Strongly Agree</option>
+                    <option value="2">Agree</option>
+                    <option value="3">Neutral</option>
+                    <option value="4">Disagree</option>
+                    <option value="5">Strongly Disagree</option>
+                </select>
+            </label>
+
+            <!-- Thinking vs. Feeling Questions -->
+            <h2>Thinking vs. Feeling</h2>
+            <label>
+                1. You prioritize logic over emotions when making decisions.
+                <select name="t1" required>
+                    <option value="">Select</option>
+                    <option value="1">Strongly Agree</option>
+                    <option value="2">Agree</option>
+                    <option value="3">Neutral</option>
+                    <option value="4">Disagree</option>
+                    <option value="5">Strongly Disagree</option>
+                </select>
+            </label>
+            <label>
+                2. You believe justice is more important than mercy.
+                <select name="t2" required>
+                    <option value="">Select</option>
+                    <option value="1">Strongly Agree</option>
+                    <option value="2">Agree</option>
+                    <option value="3">Neutral</option>
+                    <option value="4">Disagree</option>
+                    <option value="5">Strongly Disagree</option>
+                </select>
+            </label>
+
+            <!-- Judging vs. Perceiving Questions -->
+            <h2>Judging vs. Perceiving</h2>
+            <label>
+                1. You prefer to have a detailed plan rather than being spontaneous.
+                <select name="j1" required>
+                    <option value="">Select</option>
+                    <option value="1">Strongly Agree</option>
+                    <option value="2">Agree</option>
+                    <option value="3">Neutral</option>
+                    <option value="4">Disagree</option>
+                    <option value="5">Strongly Disagree</option>
+                </select>
+            </label>
+            <label>
+                2. You like to finish tasks well ahead of a deadline.
+                <select name="j2" required>
+                    <option value="">Select</option>
+                    <option value="1">Strongly Agree</option>
+                    <option value="2">Agree</option>
+                    <option value="3">Neutral</option>
+                    <option value="4">Disagree</option>
+                    <option value="5">Strongly Disagree</option>
+                </select>
+            </label>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Music recommendations for each personality type
+        const musicData = {
+            "INTJ": ["Chill Out - Abstract Hip Hop", "Cinematic - Instrumental"],
+            "INFP": ["Acoustic - Folk", "Indie Pop"],
+            "ENTP": ["Alternative Rock", "Electronic"],
+            "ESFJ": ["Pop", "Mainstream R&B"],
+            "ISTJ": ["Classical", "Jazz"],
+            "ENFP": ["Indie Folk", "Upbeat Pop"],
+            "ISFJ": ["Soft Rock", "Acoustic Ballads"],
+            "ESTJ": ["Classic Rock", "Motown"],
+            "ISFP": ["Lo-fi", "Ambient"],
+            "ESTP": ["Hip Hop", "Dance"],
+            "ENTJ": ["Symphonic Metal", "High-energy Electronic"],
+            "INTP": ["Progressive Rock", "Experimental"],
+            "ESFP": ["Party Music", "Dance Pop"],
+            "INFJ": ["Piano Solo", "Nature Sounds"],
+            "ENFJ": ["Feel-Good Music", "Motivational Pop"],
+            "ISTP": ["Rock Instrumentals", "Electronic Fusion"],
+            "ISFJ": ["Classical Piano", "Mellow Jazz"]
+        };
+
+        document.getElementById("quiz-form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form from reloading the page
+
+            const formData = new FormData(event.target);
+            let eScore = 0, sScore = 0, tScore = 0, jScore = 0;
+
+            // Calculate scores based on form inputs
+            for (let [key, value] of formData.entries()) {
+                if (key.startsWith('e')) eScore += parseInt(value);
+                else if (key.startsWith('s')) sScore += parseInt(value);
+                else if (key.startsWith('t')) tScore += parseInt(value);
+                else if (key.startsWith('j')) jScore += parseInt(value);
+            }
+
+            // Determine personality type based on scores
+            const personalityType = 
+                (eScore <= 6 ? 'E' : 'I') + 
+                (sScore <= 6 ? 'S' : 'N') + 
+                (tScore <= 6 ? 'T' : 'F') + 
+                (jScore <= 6 ? 'J' : 'P');
+
+            // Get recommendations from musicData
+            const recommendations = musicData[personalityType] || [];
+
+            // Redirect to result.html with the recommendations
+            window.location.href = 'result.html?recommendations=' + encodeURIComponent(JSON.stringify(recommendations));
+        });
+    </script>
+</body>
+</html>
