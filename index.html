@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Personality Music Quiz</title>
+    <script src="my_cpp_program.js"></script> 
 </head>
 <body>
     <div class="container">
         <h1>16 Personalities Quiz</h1>
         <form id="quiz-form">
-            <!-- Extraversion vs. Introversion Questions -->
+           
             <h2>Extraversion vs. Introversion</h2>
             <label>
                 1. You enjoy socializing with large groups of people.
@@ -35,7 +36,7 @@
                 </select>
             </label>
 
-            <!-- Sensing vs. Intuition Questions -->
+       
             <h2>Sensing vs. Intuition</h2>
             <label>
                 1. You prefer concrete facts over abstract theories.
@@ -60,7 +61,7 @@
                 </select>
             </label>
 
-            <!-- Thinking vs. Feeling Questions -->
+            
             <h2>Thinking vs. Feeling</h2>
             <label>
                 1. You prioritize logic over emotions when making decisions.
@@ -85,7 +86,7 @@
                 </select>
             </label>
 
-            <!-- Judging vs. Perceiving Questions -->
+           
             <h2>Judging vs. Perceiving</h2>
             <label>
                 1. You prefer to have a detailed plan rather than being spontaneous.
@@ -114,55 +115,76 @@
         </form>
     </div>
 
+    
     <script>
-        // Music recommendations for each personality type
-        const musicData = {
-            "INTJ": ["Chill Out - Abstract Hip Hop", "Cinematic - Instrumental"],
-            "INFP": ["Acoustic - Folk", "Indie Pop"],
-            "ENTP": ["Alternative Rock", "Electronic"],
-            "ESFJ": ["Pop", "Mainstream R&B"],
-            "ISTJ": ["Classical", "Jazz"],
-            "ENFP": ["Indie Folk", "Upbeat Pop"],
-            "ISFJ": ["Soft Rock", "Acoustic Ballads"],
-            "ESTJ": ["Classic Rock", "Motown"],
-            "ISFP": ["Lo-fi", "Ambient"],
-            "ESTP": ["Hip Hop", "Dance"],
-            "ENTJ": ["Symphonic Metal", "High-energy Electronic"],
-            "INTP": ["Progressive Rock", "Experimental"],
-            "ESFP": ["Party Music", "Dance Pop"],
-            "INFJ": ["Piano Solo", "Nature Sounds"],
-            "ENFJ": ["Feel-Good Music", "Motivational Pop"],
-            "ISTP": ["Rock Instrumentals", "Electronic Fusion"],
-            "ISFJ": ["Classical Piano", "Mellow Jazz"]
-        };
+        var Module = {
+            onRuntimeInitialized: function() {
+         
+                document.getElementById("quiz-form").addEventListener("submit", function (event) {
+                    event.preventDefault();
 
-        document.getElementById("quiz-form").addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent form from reloading the page
+                    const formData = new FormData(event.target);
+                    let eScore = 0, sScore = 0, tScore = 0, jScore = 0;
 
-            const formData = new FormData(event.target);
-            let eScore = 0, sScore = 0, tScore = 0, jScore = 0;
+                    
+                    const answerLabels = {
+                        "1": "Strongly Agree",
+                        "2": "Agree",
+                        "3": "Neutral",
+                        "4": "Disagree",
+                        "5": "Strongly Disagree"
+                    };
 
-            // Calculate scores based on form inputs
-            for (let [key, value] of formData.entries()) {
-                if (key.startsWith('e')) eScore += parseInt(value);
-                else if (key.startsWith('s')) sScore += parseInt(value);
-                else if (key.startsWith('t')) tScore += parseInt(value);
-                else if (key.startsWith('j')) jScore += parseInt(value);
+                 
+                    const questions = {
+                        "e1": "You enjoy socializing with large groups of people.",
+                        "e2": "You often start conversations with strangers.",
+                        "s1": "You prefer concrete facts over abstract theories.",
+                        "s2": "You are more focused on the present than future possibilities.",
+                        "t1": "You prioritize logic over emotions when making decisions.",
+                        "t2": "You believe justice is more important than mercy.",
+                        "j1": "You prefer to have a detailed plan rather than being spontaneous.",
+                        "j2": "You like to finish tasks well ahead of a deadline."
+                    };
+
+                    
+                    let quizResults = "";
+
+                    
+                    for (let [key, value] of formData.entries()) {
+                        const questionText = questions[key];  
+                        const answerText = answerLabels[value];  
+                        quizResults += `${questionText},${answerText},`; 
+                    }
+
+                   
+                    quizResults = quizResults.slice(0, -1);
+
+                    // Call the C++ function (WebAssembly) to generate AI answers
+                    const aiAnswer = Module._generateAIAnswer(); // Call C++ function (replace _generateAIAnswer with your actual function)
+                    console.log("AI Answer from C++:", aiAnswer);
+
+                    
+                    quizResults += `,AI Answer:${aiAnswer}`;
+
+                    
+                    const blob = new Blob([quizResults], { type: 'text/plain' });
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = 'quiz-results.txt';
+
+                    
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    
+                    setTimeout(() => {
+                        window.location.href = 'result.html';
+                    }, 500); 
+                });
             }
-
-            // Determine personality type based on scores
-            const personalityType = 
-                (eScore <= 6 ? 'E' : 'I') + 
-                (sScore <= 6 ? 'S' : 'N') + 
-                (tScore <= 6 ? 'T' : 'F') + 
-                (jScore <= 6 ? 'J' : 'P');
-
-            // Get recommendations from musicData
-            const recommendations = musicData[personalityType] || [];
-
-            // Redirect to result.html with the recommendations
-            window.location.href = 'result.html?recommendations=' + encodeURIComponent(JSON.stringify(recommendations));
-        });
+        };
     </script>
 </body>
 </html>

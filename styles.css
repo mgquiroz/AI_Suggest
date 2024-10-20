@@ -1,4 +1,4 @@
-/* General Styles */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f2f5;
@@ -10,7 +10,7 @@ body {
     height: 100vh;
 }
 
-/* Container for the form and results */
+
 .container {
     background-color: #fff;
     padding: 30px;
@@ -20,20 +20,20 @@ body {
     width: 100%;
 }
 
-/* Form and Result Page Headings */
+
 h1 {
     color: #333;
     text-align: center;
 }
 
-/* Section Headings in the Form */
+
 h2 {
     color: #666;
     font-size: 1.2em;
     margin-top: 20px;
 }
 
-/* Form styles */
+
 form label {
     display: block;
     margin-bottom: 15px;
@@ -47,7 +47,7 @@ form select {
     border: 1px solid #ccc;
 }
 
-/* Submit button */
+
 button[type="submit"] {
     background-color: #4CAF50;
     color: white;
@@ -66,7 +66,7 @@ button[type="submit"]:hover {
     background-color: #45a049;
 }
 
-/* Result styles */
+
 .result-container {
     text-align: center;
 }
@@ -89,7 +89,7 @@ button[type="submit"]:hover {
     border-radius: 5px;
 }
 
-/* Back button on the results page */
+
 button {
     background-color: #4CAF50;
     color: white;
