@@ -3,188 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Personality Music Quiz</title>
-    <script src="my_cpp_program.js"></script> 
+    <title>Personality Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        label, select {
+            display: block;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>16 Personalities Quiz</h1>
-        <form id="quiz-form">
-           
-            <h2>Extraversion vs. Introversion</h2>
-            <label>
-                1. You enjoy socializing with large groups of people.
-                <select name="e1" required>
-                    <option value="">Select</option>
-                    <option value="1">Strongly Agree</option>
-                    <option value="2">Agree</option>
-                    <option value="3">Neutral</option>
-                    <option value="4">Disagree</option>
-                    <option value="5">Strongly Disagree</option>
-                </select>
-            </label>
-            <label>
-                2. You often start conversations with strangers.
-                <select name="e2" required>
-                    <option value="">Select</option>
-                    <option value="1">Strongly Agree</option>
-                    <option value="2">Agree</option>
-                    <option value="3">Neutral</option>
-                    <option value="4">Disagree</option>
-                    <option value="5">Strongly Disagree</option>
-                </select>
-            </label>
 
-       
-            <h2>Sensing vs. Intuition</h2>
-            <label>
-                1. You prefer concrete facts over abstract theories.
-                <select name="s1" required>
-                    <option value="">Select</option>
-                    <option value="1">Strongly Agree</option>
-                    <option value="2">Agree</option>
-                    <option value="3">Neutral</option>
-                    <option value="4">Disagree</option>
-                    <option value="5">Strongly Disagree</option>
-                </select>
-            </label>
-            <label>
-                2. You are more focused on the present than future possibilities.
-                <select name="s2" required>
-                    <option value="">Select</option>
-                    <option value="1">Strongly Agree</option>
-                    <option value="2">Agree</option>
-                    <option value="3">Neutral</option>
-                    <option value="4">Disagree</option>
-                    <option value="5">Strongly Disagree</option>
-                </select>
-            </label>
+    <h1>Personality Quiz</h1>
+    <form id="quiz-form">
+        <!-- Questions with dropdowns -->
+        <label>1. Do you enjoy socializing with large groups of people?
+            <select name="q1" required>
+                <option value="Strongly Agree">Strongly Agree</option>
+                <option value="Agree">Agree</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Disagree">Disagree</option>
+                <option value="Strongly Disagree">Strongly Disagree</option>
+            </select>
+        </label>
+        <label>2. Do you often start conversations with strangers?
+            <select name="q2" required>
+                <option value="Strongly Agree">Strongly Agree</option>
+                <option value="Agree">Agree</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Disagree">Disagree</option>
+                <option value="Strongly Disagree">Strongly Disagree</option>
+            </select>
+        </label>
+        <label>3. You prefer concrete facts over abstract theories.
+            <select name="q3" required>
+                <option value="Strongly Agree">Strongly Agree</option>
+                <option value="Agree">Agree</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Disagree">Disagree</option>
+                <option value="Strongly Disagree">Strongly Disagree</option>
+            </select>
+        </label>
+        <label>4. You are more focused on the present than future possibilities.
+            <select name="q4" required>
+                <option value="Strongly Agree">Strongly Agree</option>
+                <option value="Agree">Agree</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Disagree">Disagree</option>
+                <option value="Strongly Disagree">Strongly Disagree</option>
+            </select>
+        </label>
+        <label>5. You prioritize logic over emotions when making decisions.
+            <select name="q5" required>
+                <option value="Strongly Agree">Strongly Agree</option>
+                <option value="Agree">Agree</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Disagree">Disagree</option>
+                <option value="Strongly Disagree">Strongly Disagree</option>
+            </select>
+        </label>
+        <label>6. You believe justice is more important than mercy.
+            <select name="q6" required>
+                <option value="Strongly Agree">Strongly Agree</option>
+                <option value="Agree">Agree</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Disagree">Disagree</option>
+                <option value="Strongly Disagree">Strongly Disagree</option>
+            </select>
+        </label>
+        <label>7. You prefer to have a detailed plan rather than being spontaneous.
+            <select name="q7" required>
+                <option value="Strongly Agree">Strongly Agree</option>
+                <option value="Agree">Agree</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Disagree">Disagree</option>
+                <option value="Strongly Disagree">Strongly Disagree</option>
+            </select>
+        </label>
+        <label>8. You like to finish tasks well ahead of a deadline.
+            <select name="q8" required>
+                <option value="Strongly Agree">Strongly Agree</option>
+                <option value="Agree">Agree</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Disagree">Disagree</option>
+                <option value="Strongly Disagree">Strongly Disagree</option>
+            </select>
+        </label>
+        <label>9. You prefer working in a team rather than alone.
+            <select name="q9" required>
+                <option value="Strongly Agree">Strongly Agree</option>
+                <option value="Agree">Agree</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Disagree">Disagree</option>
+                <option value="Strongly Disagree">Strongly Disagree</option>
+            </select>
+        </label>
+        <label>10. You are a perfectionist when it comes to your work.
+            <select name="q10" required>
+                <option value="Strongly Agree">Strongly Agree</option>
+                <option value="Agree">Agree</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Disagree">Disagree</option>
+                <option value="Strongly Disagree">Strongly Disagree</option>
+            </select>
+        </label>
 
-            
-            <h2>Thinking vs. Feeling</h2>
-            <label>
-                1. You prioritize logic over emotions when making decisions.
-                <select name="t1" required>
-                    <option value="">Select</option>
-                    <option value="1">Strongly Agree</option>
-                    <option value="2">Agree</option>
-                    <option value="3">Neutral</option>
-                    <option value="4">Disagree</option>
-                    <option value="5">Strongly Disagree</option>
-                </select>
-            </label>
-            <label>
-                2. You believe justice is more important than mercy.
-                <select name="t2" required>
-                    <option value="">Select</option>
-                    <option value="1">Strongly Agree</option>
-                    <option value="2">Agree</option>
-                    <option value="3">Neutral</option>
-                    <option value="4">Disagree</option>
-                    <option value="5">Strongly Disagree</option>
-                </select>
-            </label>
+        <button type="submit" class="btn">Submit</button>
+    </form>
 
-           
-            <h2>Judging vs. Perceiving</h2>
-            <label>
-                1. You prefer to have a detailed plan rather than being spontaneous.
-                <select name="j1" required>
-                    <option value="">Select</option>
-                    <option value="1">Strongly Agree</option>
-                    <option value="2">Agree</option>
-                    <option value="3">Neutral</option>
-                    <option value="4">Disagree</option>
-                    <option value="5">Strongly Disagree</option>
-                </select>
-            </label>
-            <label>
-                2. You like to finish tasks well ahead of a deadline.
-                <select name="j2" required>
-                    <option value="">Select</option>
-                    <option value="1">Strongly Agree</option>
-                    <option value="2">Agree</option>
-                    <option value="3">Neutral</option>
-                    <option value="4">Disagree</option>
-                    <option value="5">Strongly Disagree</option>
-                </select>
-            </label>
-
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-
-    
     <script>
-        var Module = {
-            onRuntimeInitialized: function() {
-         
-                document.getElementById("quiz-form").addEventListener("submit", function (event) {
-                    event.preventDefault();
+        document.getElementById('quiz-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission from refreshing the page
 
-                    const formData = new FormData(event.target);
-                    let eScore = 0, sScore = 0, tScore = 0, jScore = 0;
+            const formData = new FormData(event.target); // Get form data
+            let results = ''; // Store results as a string
+            const answers = {}; // Store results as an object for localStorage
 
-                    
-                    const answerLabels = {
-                        "1": "Strongly Agree",
-                        "2": "Agree",
-                        "3": "Neutral",
-                        "4": "Disagree",
-                        "5": "Strongly Disagree"
-                    };
+            // Define the questions
+            const questions = {
+                "q1": "1. Do you enjoy socializing with large groups of people?",
+                "q2": "2. Do you often start conversations with strangers?",
+                "q3": "3. You prefer concrete facts over abstract theories.",
+                "q4": "4. You are more focused on the present than future possibilities.",
+                "q5": "5. You prioritize logic over emotions when making decisions.",
+                "q6": "6. You believe justice is more important than mercy.",
+                "q7": "7. You prefer to have a detailed plan rather than being spontaneous.",
+                "q8": "8. You like to finish tasks well ahead of a deadline.",
+                "q9": "9. You prefer working in a team rather than alone.",
+                "q10": "10. You are a perfectionist when it comes to your work."
+            };
 
-                 
-                    const questions = {
-                        "e1": "You enjoy socializing with large groups of people.",
-                        "e2": "You often start conversations with strangers.",
-                        "s1": "You prefer concrete facts over abstract theories.",
-                        "s2": "You are more focused on the present than future possibilities.",
-                        "t1": "You prioritize logic over emotions when making decisions.",
-                        "t2": "You believe justice is more important than mercy.",
-                        "j1": "You prefer to have a detailed plan rather than being spontaneous.",
-                        "j2": "You like to finish tasks well ahead of a deadline."
-                    };
+            // Loop through form data and append each question and answer to results
+            formData.forEach((value, key) => {
+                results += `${questions[key]}: ${value},`; // Store as comma-separated string for output.txt
+                answers[key] = value; // For localStorage
+            });
 
-                    
-                    let quizResults = "";
+            // Save answers to localStorage for result.html
+            localStorage.setItem('quizAnswers', JSON.stringify(answers));
 
-                    
-                    for (let [key, value] of formData.entries()) {
-                        const questionText = questions[key];  
-                        const answerText = answerLabels[value];  
-                        quizResults += `${questionText},${answerText},`; 
-                    }
+            // Create a downloadable text file (output.txt)
+            const blob = new Blob([results.slice(0, -1)], { type: 'text/plain' }); // Remove trailing comma
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'output.txt';
 
-                   
-                    quizResults = quizResults.slice(0, -1);
+            // Simulate clicking the download link
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
 
-                    // Call the C++ function (WebAssembly) to generate AI answers
-                    const aiAnswer = Module._generateAIAnswer(); // Call C++ function (replace _generateAIAnswer with your actual function)
-                    console.log("AI Answer from C++:", aiAnswer);
-
-                    
-                    quizResults += `,AI Answer:${aiAnswer}`;
-
-                    
-                    const blob = new Blob([quizResults], { type: 'text/plain' });
-                    const link = document.createElement('a');
-                    link.href = URL.createObjectURL(blob);
-                    link.download = 'quiz-results.txt';
-
-                    
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-
-                    
-                    setTimeout(() => {
-                        window.location.href = 'result.html';
-                    }, 500); 
-                });
-            }
-        };
+            // Redirect to result.html
+            window.location.href = 'result.html';
+        });
     </script>
+
 </body>
 </html>
