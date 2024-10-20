@@ -1,14 +1,31 @@
 #include <iostream>
 #include <cstdlib>
 #include <signal.h>
-#include <unistd.h>
+#include <unistd.h> /*PROGRAM RUNS ON LINUX AND MACOS ENVIRONMENT NOT WINDOWS*/
 #include <string>
 #include <fstream>
+#include <sstream>
 
-std::string InputString = "Gender? Male, Age? 21, Personality? Extroverted, Cats or Dogs? Cats";
+std::string InputString;
 /*Use above as space for actual input from program in form "Question? Answer, Question? Answer, ...." extracted from user answers*/
 std::string OutputString;
 bool pythonFileReturned = false;
+
+void readFileIntoString() {
+    std::ifstream file("quiz-results.txt");
+
+    if (!file.is_open()) {
+        std::cout << "Error opening file." << std::endl;
+        exit(0);
+        return;
+    }
+
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    InputString = buffer.str();
+
+    file.close();
+}
 
 void callPythonFile(){
     setenv("InputString", InputString.c_str(), 1);
@@ -36,8 +53,9 @@ std::string readOutputString(){
 }
 
 int main(){
-
+    readFileIntoString();
     callPythonFile();
+
     if (pythonFileReturned == true) {
         OutputString = readOutputString();
     }
@@ -45,7 +63,11 @@ int main(){
         std::cout << "PythonFileReturn Failed" << std::endl;
         exit(0);
     }
-    std::cout << OutputString << std::endl;
+    /*std::cout << OutputString << std::endl; For debugging purposes*/
+
+    std::ofstream outFile("output.txt");
+    outFile << OutputString;
+    outFile.close();
 
     return 0;
 }

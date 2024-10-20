@@ -36,10 +36,8 @@
     </style>
 </head>
 <body>
-
     <h1>Personality Quiz</h1>
-    <form id="quiz-form">
-        <!-- Questions with dropdowns -->
+    <form id="quiz-form" action="/submit" method="POST">
         <label>1. Do you enjoy socializing with large groups of people?
             <select name="q1" required>
                 <option value="Strongly Agree">Strongly Agree</option>
@@ -133,53 +131,5 @@
 
         <button type="submit" class="btn">Submit</button>
     </form>
-
-    <script>
-        document.getElementById('quiz-form').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent form submission from refreshing the page
-
-            const formData = new FormData(event.target); // Get form data
-            let results = ''; // Store results as a string
-            const answers = {}; // Store results as an object for localStorage
-
-            // Define the questions
-            const questions = {
-                "q1": "1. Do you enjoy socializing with large groups of people?",
-                "q2": "2. Do you often start conversations with strangers?",
-                "q3": "3. You prefer concrete facts over abstract theories.",
-                "q4": "4. You are more focused on the present than future possibilities.",
-                "q5": "5. You prioritize logic over emotions when making decisions.",
-                "q6": "6. You believe justice is more important than mercy.",
-                "q7": "7. You prefer to have a detailed plan rather than being spontaneous.",
-                "q8": "8. You like to finish tasks well ahead of a deadline.",
-                "q9": "9. You prefer working in a team rather than alone.",
-                "q10": "10. You are a perfectionist when it comes to your work."
-            };
-
-            // Loop through form data and append each question and answer to results
-            formData.forEach((value, key) => {
-                results += `${questions[key]}: ${value},`; // Store as comma-separated string for output.txt
-                answers[key] = value; // For localStorage
-            });
-
-            // Save answers to localStorage for result.html
-            localStorage.setItem('quizAnswers', JSON.stringify(answers));
-
-            // Create a downloadable text file (output.txt)
-            const blob = new Blob([results.slice(0, -1)], { type: 'text/plain' }); // Remove trailing comma
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'output.txt';
-
-            // Simulate clicking the download link
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-
-            // Redirect to result.html
-            window.location.href = 'result.html';
-        });
-    </script>
-
 </body>
 </html>

@@ -40,21 +40,17 @@
     <div id="result">Loading your results from output.txt...</div>
 
     <script>
-        // Function to fetch and display the content of output.txt
         function fetchAndDisplayResults() {
             fetch('output.txt')
                 .then(response => response.text())
                 .then(data => {
-                    // Split the content by commas
                     const answersArray = data.split(',').map(answer => answer.trim()).filter(answer => answer !== '');
 
-                    // Create HTML for each answer
                     let resultHTML = '<h2>Answers:</h2>';
                     answersArray.forEach((answer, index) => {
                         resultHTML += `<div class="answer">Answer ${index + 1}: ${answer}</div>`;
                     });
 
-                    // Display the result inside the #result div
                     document.getElementById('result').innerHTML = resultHTML;
                 })
                 .catch(error => {
@@ -63,7 +59,6 @@
                 });
         }
 
-        // Call the function to fetch and display the results when the page loads
         window.onload = fetchAndDisplayResults;
     </script>
 
